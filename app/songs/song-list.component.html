@@ -1,0 +1,56 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-2'>Filter By:</div>
+            <div class='col-md-4'>
+                <input type='text'
+                    [(ngModel)]='listFilter' />
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-6'>
+                <h3>Filtered By: {{ listFilter }}</h3>
+            </div>
+        </div>
+       <div class='table-responsive'>
+           <table class='table'
+           *ngIf='songs && songs.length'>
+               <thead>
+                   <tr>
+                       <th>Title</th>
+                       <th>Artist</th>
+                       <th>Genre</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor='let song of songs | songFilter:listFilter'>
+                       <td><a [routerLink]="['/song', song._id]">{{ song.title }}</a></td>
+                       <td>{{ song.artist }}</td>
+                       <td>{{ song.genre }}</td>
+                   </tr>
+               </tbody>
+           </table>
+    </div>
+    
+    <button type="submit" class="btn btn-primary" (click)='createNewSong()'>Add new Song</button>
+    
+    <form id='createSong' *ngIf='newSong' style='margin:2vw'>
+         <div class="form-group">
+            <label for="title">Title</label>
+            <input [(ngModel)] = "title" name="title" type="text" class="form-control" id="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="artist">Artist</label>
+            <input [(ngModel)] = "artist" name="artist" type="text" class="form-control" id="artist" placeholder="Artist">
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <input [(ngModel)] = "genre" name="genre" type="text" class="form-control" id="genre" placeholder="Genre">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)='createSong()'>Submit</button>
+     </form>
+     
+</div>

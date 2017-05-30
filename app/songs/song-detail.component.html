@@ -1,0 +1,51 @@
+<div class='panel panel-primary' *ngIf='song'>
+     <div class='panel-heading'>
+         {{pageTitle}}
+     </div>
+     
+     <div class='table-responsive'>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ song.title }}</td>
+                    <td>{{ song.artist }}</td>
+                    <td>{{ song.genre }}</td>
+                    <td><a class='btn btn-default' (click)='editSong()'style='width:80px'>Edit</a></td>
+                    <td><a class='btn btn-default' (click)='deleteSong()' style='width:80px'>Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+     
+     <form id='editSong' *ngIf='edit' style='margin:2vw'>
+         <div class="form-group">
+            <label for="title">Title</label>
+            <input [(ngModel)] = "title" name="title" type="text" class="form-control" id="title" value={{song.title}}>
+        </div>
+        <div class="form-group">
+            <label for="artist">Artist</label>
+            <input [(ngModel)] = "artist" name="artist" type="text" class="form-control" id="artist" value={{song.artist}}>
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <input [(ngModel)] = "genre" name="genre" type="text" class="form-control" id="genre" value={{song.genre}}>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)='saveSong()'>Submit</button>
+     </form>
+     
+     <div class='panel-footer'>
+         <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+             <i class='glyphicon glyphicon-chevron-left'></i> Back
+         </a>
+     </div>
+    
+</div>

@@ -1,0 +1,1 @@
+//# sourceMappingURL=star.compnent.js.map
